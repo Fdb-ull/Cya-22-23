@@ -1,4 +1,22 @@
-
+// Universidad de La Laguna
+// Escuela Superior de Ingenierıa y Tecnologıa
+// Grado en Ingenierıa Informatica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Practica 2: Operaciones con lenguajes
+// Autor: Franco Dendi Bele
+// Correo: alu0101134703@ull.edu.es
+// Fecha: 10/10/2022
+//
+// Archivo simbolo.h:
+// Contiene las cabeceras de la clase Simbolo, se encarga
+// de alamcenar y gestionar operaciones con Simbolos
+//
+// Referencias:
+//
+//
+// Historial de revisiones
+// 08/10/2022 - Creacion del primer codigo
 #ifndef SIMBOLO_H
 #define SIMBOLO_H
 
@@ -7,12 +25,11 @@
 
 using namespace std;
 
-class Simbolo
-{
-private:
+class Simbolo {
+ private:
   string value_;
 
-public:
+ public:
   Simbolo(const string &value = "");
   ~Simbolo();
 
@@ -36,6 +53,7 @@ public:
 ostream &operator<<(ostream &os, const Simbolo &x);
 bool operator==(const Simbolo &x, const Simbolo &y);
 bool operator!=(const Simbolo &x, const Simbolo &y);
+bool operator<(const Simbolo &x, const Simbolo &y);
 Simbolo toSimbol(string value);
 
 #endif

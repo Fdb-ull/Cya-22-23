@@ -1,3 +1,22 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingenierıa y Tecnologıa
+// Grado en Ingenierıa Informatica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Practica 2: Operaciones con lenguajes
+// Autor: Franco Dendi Bele
+// Correo: alu0101134703@ull.edu.es
+// Fecha: 10/10/2022
+//
+// Archivo Languages.h
+// Contiene las cabeceras de la clase lenguaje, encargada
+// de dar forma al lenguaje y almacenar sus variables
+//
+// Referencias:
+//
+//
+// Historial de revisiones
+// 08/10/2022 - Creacion del primer codigo
 #ifndef LENGUAJE_H
 #define LENGUAJE_H
 
@@ -11,13 +30,12 @@
 // Lenguaje vacio = {}
 // Lenguaje que contiene la cadena vacia = {&}
 
-class Lenguaje
-{
-private:
+class Lenguaje {
+ private:
   Alfabeto alf_;
   set<Cadena> arr_;
 
-public:
+ public:
   Lenguaje(Alfabeto &alf_aux, Cadena &value);
   Lenguaje(Alfabeto &alf_aux);
   Lenguaje();

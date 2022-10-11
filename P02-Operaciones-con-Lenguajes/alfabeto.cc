@@ -1,60 +1,67 @@
 #include "alfabeto.h"
 
-Alfabeto::Alfabeto(Simbolo value)
-{
-  value_.push_back(value);
-  sz_++;
-}
+Alfabeto::Alfabeto(Simbolo value) { value_.insert(value); }
 
 Alfabeto::Alfabeto() {}
 
 Alfabeto::~Alfabeto() { value_.clear(); }
 
-vector<Simbolo> Alfabeto::getAlfabeto() const { return value_; }
+set<Simbolo> Alfabeto::getAlfabeto() const { return value_; }
 
-Simbolo Alfabeto::getSimbolo(int pos) const { return value_[pos]; }
+Simbolo Alfabeto::getSimbolo(int pos) const {
+  std::set<Simbolo>::iterator it = value_.begin();
+  std::advance(it, pos);
+  Simbolo x = *it;
 
-void Alfabeto::setAlfabeto(const vector<Simbolo> value)
-{
+  return x;
+}
+void Alfabeto::setAlfabeto(const set<Simbolo> value) {
   value_.clear();
   value_ = value;
 }
 
-void Alfabeto::setSimbolo(Simbolo value)
-{
-  for (int i = 0; i < value_.size(); i++)
-  {
-    value_.resize(value_.size() + 1);
-    value_[value_.size() - 1] = value;
-    sz_++;
-  }
-}
+void Alfabeto::setSimbolo(Simbolo value) { value_.insert(value); }
 
-bool Alfabeto::isSimbolo(Simbolo value)
-{
+void Alfabeto::addSimbolo(Simbolo value) { value_.insert(value); }
+Simbolo Alfabeto::getSimboloVacio(void) {
+  string x = "&";
+  Simbolo sim;
+  sim.addSimbolo(x);
+
+  return sim;
+}
+Alfabeto Alfabeto::unionAlfabeto(const Alfabeto &alf) {
+  Alfabeto aux;
+  Cadena string_aux;
+
   for (int i = 0; i < getSize(); i++)
+    if (string_aux.getStringSimbolo(i) != getSimboloVacio())
+      aux.addSimbolo(getSimbolo(i));
+  for (int i = 0; i < alf.getSize(); i++)
+    if (string_aux.getStringSimbolo(i) != getSimboloVacio())
+      aux.addSimbolo(alf.getSimbolo(i));
+
+  return aux;
+}
+/*
+Alfabeto Alfabeto::diferenciaAlfabeto(const Alfabeto &alf)
+{
+  Alfabeto alf_aux;
+  Cadena string_aux;
+  for (int i = 0; i < alf.getSize(); i++)
   {
-    if (value.getSimbolo() == value_[i].getSimbolo())
-    {
-      return true;
-    }
+    string_aux.setStringSimbolo(alf.getSimbolo(i));
+    for (int j = 0; j < string_aux.getSize(); j++)
+      if (string_aux.getStringSimbolo(i) != getSimboloVacio())
+        alf_aux.addSimbolo(string_aux.getStringSimbolo(j));
   }
-  return false;
+  return alf_aux;
 }
-
-void Alfabeto::addSimbolo(Simbolo value)
-{
-  // if (isSimbolo(value) != true) {
-  value_.push_back(value);
-  //}
-}
-
-ostream &operator<<(ostream &os, const Alfabeto &x)
-{
+*/
+ostream &operator<<(ostream &os, const Alfabeto &x) {
   os << "{ ";
-  for (int i = 0; i < x.getAlfabeto().size(); i++)
-  {
-    os << x.getAlfabeto()[i] << " ";
+  for (int i = 0; i < x.getSize(); i++) {
+    os << x.getSimbolo(i) << " ";
   }
   os << "} ";
   return os;

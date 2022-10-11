@@ -1,3 +1,22 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingenierıa y Tecnologıa
+// Grado en Ingenierıa Informatica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Practica 2: Operaciones con lenguajes
+// Autor: Franco Dendi Bele
+// Correo: alu0101134703@ull.edu.es
+// Fecha: 10/10/2022
+//
+// Archivo cya-P02-Languages.cc: programa cliente.
+// Contiene las cabeceras de la clase Cadena, se encarga
+// de alamcenar y gestionar operaciones con Cadenas
+//
+// Referencias:
+//
+//
+// Historial de revisiones
+// 08/10/2022 - Creacion del primer codigo
 #ifndef CADENA_H
 #define CADENA_H
 
@@ -10,12 +29,11 @@
 
 using namespace std;
 
-class Cadena
-{
-private:
+class Cadena {
+ private:
   vector<Simbolo> string_;
 
-public:
+ public:
   Cadena(vector<Simbolo> string_t);
   Cadena(const Simbolo &string_t);
   Cadena();
