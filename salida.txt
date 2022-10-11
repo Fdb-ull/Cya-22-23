@@ -1,0 +1,25 @@
+
+Alfabeto:{ a b c d }  Cadena:{ a abc cab bbcc } 
+
+Inversa: { a bac cba ccbb } 
+Alfabeto: { a b c d } 
+
+Alfabeto:{ a }  Cadena:{ a aa aaa } 
+
+Inversa: { a aa aaa } 
+Alfabeto: { a } 
+
+Alfabeto:{ a b }  Cadena:{ } 
+
+Inversa: { } 
+Alfabeto: { a b } 
+
+Alfabeto:{ 0 1 }  Cadena:{ & } 
+
+Inversa: { & } 
+Alfabeto: { 0 1 } 
+
+Alfabeto:{ 0 1 }  Cadena:{ 0 1 00 01 10 11 } 
+
+Inversa: { 0 1 00 01 10 11 } 
+Alfabeto: { 0 1 } 

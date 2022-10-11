@@ -1,0 +1,5 @@
+main: main.cc lenguaje.cc alfabeto.cc cadena.cc simbolo.cc
+	g++ -Wall -g -std=c++11 main.cc lenguaje.cc alfabeto.cc cadena.cc simbolo.cc  lenguaje.h alfabeto.h cadena.h simbolo.h -o main
+
+clean:
+	rm main
