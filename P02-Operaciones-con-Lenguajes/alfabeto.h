@@ -8,12 +8,13 @@
 
 using namespace std;
 
-class Alfabeto {
- private:
+class Alfabeto
+{
+private:
   vector<Simbolo> value_;
   int sz_ = 0;
 
- public:
+public:
   Alfabeto(Simbolo value);
   Alfabeto();
 
@@ -27,8 +28,9 @@ class Alfabeto {
   void setSimbolo(Simbolo value);
   bool isSimbolo(Simbolo value);
   void addSimbolo(Simbolo value);
+  void setAlfabeto(vector<Simbolo> value);
 };
 
-ostream& operator<<(ostream& os, const Alfabeto& x);
+ostream &operator<<(ostream &os, const Alfabeto &x);
 
 #endif

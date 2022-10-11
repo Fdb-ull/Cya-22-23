@@ -1,4 +1,4 @@
-{ a b c } { a abc cab bbcc }
+{ a b c } { a abc cab bbc }
 { a } { a aa aaa }
 { a b } { }
 { 0 1 } { & }
