@@ -17,6 +17,7 @@
 //
 // Historial de revisiones
 // 08/10/2022 - Creacion del primer codigo
+
 #ifndef CADENA_H
 #define CADENA_H
 
@@ -29,11 +30,12 @@
 
 using namespace std;
 
-class Cadena {
- private:
+class Cadena
+{
+private:
   vector<Simbolo> string_;
 
- public:
+public:
   Cadena(vector<Simbolo> string_t);
   Cadena(const Simbolo &string_t);
   Cadena();

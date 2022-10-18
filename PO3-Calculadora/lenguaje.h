@@ -17,6 +17,7 @@
 //
 // Historial de revisiones
 // 08/10/2022 - Creacion del primer codigo
+
 #ifndef LENGUAJE_H
 #define LENGUAJE_H
 
@@ -30,12 +31,13 @@
 // Lenguaje vacio = {}
 // Lenguaje que contiene la cadena vacia = {&}
 
-class Lenguaje {
- private:
+class Lenguaje
+{
+private:
   Alfabeto alf_;
   set<Cadena> arr_;
 
- public:
+public:
   Lenguaje(Alfabeto &alf_aux, Cadena &value);
   Lenguaje(Alfabeto &alf_aux);
   Lenguaje();

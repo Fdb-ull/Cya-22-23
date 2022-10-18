@@ -1,0 +1,28 @@
+CXXFLAGS = -g
+
+CXX = g++
+OBJS = $(TARGET).O cadena.o 
+TARGET = main
+
+$(TARGET): $(OBJS)
+	@$(CXX) -c $(CXXFLAGS) $(OBJS) -O cadena.cc
+
+$(TARGET).O : $(TARGET).cc
+	@$(CXX) -c $(CXXFLAGS) $(TARGET).cc
+
+cadena.o : cadena.cc cadena.h
+	@$(CXX) -c $(CXXFLAGS) cadena.cc
+
+alfabeto.o : alfabeto.cc alfabeto.h
+	@$(CXX) -c $(CXXFLAGS) alfabeto.cc
+
+lenguaje.o : Lenguaje.cc lenguaje.h
+	@$(CXX) -c $(CXXFLAGS) lenguaje.cc
+
+simbolo.o : simbolo.cc simbolo.h
+	@$(CXX) -c $(CXXFLAGS) simbolo.cc
+
+.PHONY: clean
+
+clean:
+rm -f *.o p03_calculadora
