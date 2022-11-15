@@ -1,0 +1,87 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingenierıa y Tecnologıa
+// Grado en Ingenierıa Informatica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Practica 2: Operaciones con lenguajes
+// Autor: Franco Dendi Bele
+// Correo: alu0101134703@ull.edu.es
+// Fecha: 10/10/2022
+//
+// Archivo Simbolo.cc:
+// Contiene los metodos de la clase Simbolo
+//
+// Referencias:
+//
+//
+// Historial de revisiones
+// 08/10/2022 - Creacion del primer codigo
+#include "simbolo.h"
+
+Simbolo::Simbolo(const string &value) : value_(value) {}
+
+void Simbolo::setSimbolo(Simbolo sim) {
+  for (size_t i = 0; i < sim.getSize(); i++) {
+    value_.push_back(sim.getSimboloAt(i));
+  }
+}
+
+void Simbolo::addSimbolo(string sim) {
+  value_.clear();
+  value_ = sim;
+}
+
+void Simbolo::addSimbolo(char sim) {
+  value_.clear();
+  value_.push_back(sim);
+}
+
+void Simbolo::addAnotherSimbolo(char sim) { value_.push_back(sim); }
+
+void Simbolo::clear() { value_.erase(); }
+
+void Simbolo::replaceSimbolo(string value) {
+  value_.resize(value.length() - 1);
+  for (int i = 0; i < value.length(); i++) {
+    value_[i] = value[i];
+  }
+}
+
+ostream &operator<<(ostream &os, const Simbolo &x) {
+  os << x.getSimbolo();
+  return os;
+}
+
+Simbolo &Simbolo::operator=(const Simbolo &x) {
+  this->value_ = x.getSimbolo();
+
+  return *this;
+}
+
+Simbolo &Simbolo::operator+(const Simbolo &x) {
+  for (size_t i = 0; i < x.getSize(); i++)
+    this->value_.push_back(x.getSimboloAt(i));
+
+  return *this;
+}
+
+bool operator==(const Simbolo &x, const Simbolo &y) {
+  return x.getSimbolo() == y.getSimbolo();
+}
+
+bool operator!=(const Simbolo &x, const Simbolo &y) {
+  return x.getSimbolo() != y.getSimbolo();
+}
+
+bool operator<(const Simbolo &x, const Simbolo &y) {
+  if (x.getSize() != y.getSize()) {
+    return x.getSize() < y.getSize();
+  } else {
+    for (int i = 0; i < x.getSize(); i++) {
+      if (x.getSimbolo()[i] != y.getSimbolo()[i]) {
+        return x.getSimboloAt(i) < y.getSimboloAt(i);
+      }
+    }
+  }
+  return false;
+}
