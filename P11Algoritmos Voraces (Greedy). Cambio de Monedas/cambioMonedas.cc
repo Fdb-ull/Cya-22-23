@@ -2,20 +2,21 @@
 
 CambioMonedas::CambioMonedas(float amount, int flag) {
   amount_ = 0.00f;
-  PosibleCandidates(flag);
-  amount = amount * 100;
-  amount_ = (int)amount;  // Convert to cents
-  int position = 0;
-  int temp = amount;
-  if (flag == 0)
+  PosibleCandidates(flag);  // asignamos los tipos de billetes o monedas
+  amount = amount * 100;    // Convierte la cantidad a centimos
+  amount_ = (int)amount;
+  int position = 0;   // Ultimo tipo de moneda o billete
+  int temp = amount;  // Cantidad entera
+
+  if (flag == 0)  // Metodo opitmizado
     while (temp != 0) {
       int temp_ammount = CandidateSelectorOptimized(temp, position);
       if (temp_ammount != 0)
-        result_.push_back(temp_ammount);
+        result_.push_back(temp_ammount);  // Asigna el resultado tras el cambio
       else
         temp = 0;
     }
-  else {
+  else {  // Metodo no optimizado
     int suma = 0;
     while (suma != temp) {
       int temp_sum = CandidateSelector(temp, position, suma);
@@ -26,16 +27,20 @@ CambioMonedas::CambioMonedas(float amount, int flag) {
     }
   }
 }
+
 int CambioMonedas::CandidateSelector(int& amount, int& position, int& suma) {
   int candidate = 0, count = 0, i = position;
   while (i < candidates_.size()) {
-    if (count > 0 && position != i) {
+    if (count > 0 && position != i) {  // Comprueba si ya se cambiaron todas las
+                                       // monedas de un mismo tipo
       i = candidates_.size();
-    } else if (suma + candidates_[i] <= amount) {
-      candidate = candidates_[i];
-      suma += candidate;
-      position = i;
-      count++;
+    } else if (suma + candidates_[i] <=
+               amount) {  // comprueba que la suma del cambio y el tipo de
+                          // moneda no sea mayor que la cantidad
+      candidate = candidates_[i];  // asinga tipo de moneda
+      suma += candidate;           // Actualiza la suma
+      position = i;                // Actualiza al tipo de moneda que se utilizo
+      count++;                     // Veces que se utilizola moneda
     } else
       i++;
   }
@@ -52,12 +57,12 @@ float CambioMonedas::getSuma(void) const {
 }
 
 void CambioMonedas::PosibleCandidates(int flag) {
-  if (flag == 1) {
+  if (flag == 1) {  // Asigna billetes y monedas al cambio
     int m[] = {50000, 20000, 10000, 5000, 2000, 1000, 500, 200,
                100,   50,    20,    10,   5,    2,    1};
     std::vector<int> v(m, m + sizeof(m) / sizeof(*m));
     setCandidates(v);
-  } else {
+  } else {  // Asigna monedas al cambio
     int m[] = {200, 100, 50, 20, 10, 5, 2, 1};
     std::vector<int> v(m, m + sizeof(m) / sizeof(*m));
     setCandidates(v);
@@ -68,12 +73,14 @@ int CambioMonedas::CandidateSelectorOptimized(int& newAmount, int& position) {
   int divide = 0;
   int candidate = 0;
   for (int i = position; i < candidates_.size(); i++) {
-    divide = newAmount / candidates_[i];
-    if (divide > 0) {
-      candidate = candidates_[i];
-      newAmount -= candidate * divide;
-      position = i + 1;
-      amountArr_.push_back(divide);
+    divide =
+        newAmount /
+        candidates_[i];  // Division de la nueva cantidad y el tipo de moneda
+    if (divide > 0) {    // Si la divicion da un entero
+      candidate = candidates_[i];       // Asgina el candidato
+      newAmount -= candidate * divide;  // Actualiza la cantidad
+      position = i + 1;                 // Actualiza el ultimo tipo de moneda
+      amountArr_.push_back(divide);  // Asigna el numero de monedas de ese tipo
       return candidate;
     }
   }
@@ -88,10 +95,10 @@ ostream& operator<<(ostream& os, const CambioMonedas& amount) {
   cout << "\nMonedas: " << amount.getSuma() << "€" << endl;
   cout << "Solucion: {";
   for (int i = 0; i < result.size() - 1; i++) {
-    if (result[i] >= 100) {
+    if (result[i] >= 100) {  // Muestra los euros
       cout << amountArr[i] << "x" << (result[i] * 0.01) << "€, ";
       billetes += amountArr[i];
-    } else {
+    } else {  // Muestra los centimos
       cout << amountArr[i] << "x" << (result[i]) << "¢, ";
       monedas += amountArr[i];
     }

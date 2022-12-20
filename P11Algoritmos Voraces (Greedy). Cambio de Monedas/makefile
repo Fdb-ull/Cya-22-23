@@ -24,4 +24,4 @@ clean:
 
 run:
 	clear 
-	./$(NAME) -o 5.54
+	./$(NAME) 5.54
